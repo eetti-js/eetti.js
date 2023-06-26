@@ -13,6 +13,20 @@ server.applyMiddleware([
   () => {},
   () => {},
   () => {},
+  () => {},
+  () => {},
+  () => {},
 ]);
 
-server.route("api/v1.user").use(() => {});
+// if routes wants to be separate files
+server.route("api/v1/user").use(() => {});
+server.route("api/v1/products").use(() => {});
+server.route("api/v1/customers").use(() => {});
+server.route("api/v1/payments").use(() => {});
+
+// if routes wants to be single files
+server.get("/api/", (req, res) => {});
+server.get("/api/", (req, res) => {}).applyMiddleware([() => {}, () => {}]);
+
+// fallback function
+server.fallback(() => {});

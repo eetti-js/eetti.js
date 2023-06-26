@@ -40,7 +40,7 @@ class Server extends EventEmitter {
     return this;
   }
 
-  get() {
+  get(path: string, handler: (req: any, res: any) => any) {
     this.handleRoute("/");
     return this;
   }
