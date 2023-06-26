@@ -3,7 +3,7 @@
  * Copyright (c) 2007-2015 Mohamed Rifkan
  * MIT License
  */
-import Server from "./createServer";
+import Eetti from "./createServer";
 
-export default Server;
-export { default as Server } from "./createServer";
+export default Eetti;
+export { default as Eetti } from "./createServer";
