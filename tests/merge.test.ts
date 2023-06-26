@@ -1,13 +1,13 @@
-import merge from '../utils/merge';
+import merge from "../lib/utils/merge";
 
-describe('merge', () => {
-  let dest;
+describe("merge", () => {
+  let dest: { a: number; b: number };
 
   beforeEach(() => {
     dest = { a: 1, b: 2 };
   });
 
-  it('merges two objects, overriding properties when override is true', () => {
+  it("merges two objects, overriding properties when override is true", () => {
     const src = { b: 3, c: 4 };
     const result = merge(dest, src, true);
 
@@ -15,7 +15,7 @@ describe('merge', () => {
     expect(result).toEqual({ a: 1, b: 3, c: 4 });
   });
 
-  it('merges two objects, not overriding properties when override is false', () => {
+  it("merges two objects, not overriding properties when override is false", () => {
     const src = { b: 3, c: 4 };
     const result = merge(dest, src, false);
 
@@ -23,17 +23,17 @@ describe('merge', () => {
     expect(result).toEqual({ a: 1, b: 2, c: 4 });
   });
 
-  it('throws a TypeError if dest argument is missing', () => {
+  it("throws a TypeError if dest argument is missing", () => {
     const src = { b: 3, c: 4 };
 
     expect(() => {
-      merge(undefined, src, true);
+      merge(undefined!, src, true);
     }).toThrow(TypeError);
   });
 
-  it('throws a TypeError if src argument is missing', () => {
+  it("throws a TypeError if src argument is missing", () => {
     expect(() => {
-      merge(dest, undefined, true);
+      merge(dest, undefined!, true);
     }).toThrow(TypeError);
   });
 });
