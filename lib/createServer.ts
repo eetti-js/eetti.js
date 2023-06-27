@@ -1,5 +1,6 @@
 import http from "node:http";
 import { EventEmitter } from "node:events";
+import merge from "./utils/merge";
 
 /**
  * @Description light weight node server framework for RESTful applications
@@ -27,43 +28,20 @@ interface ServerOptions {
 
 class Server extends EventEmitter {
   private server: any;
-  private stacks: Function[] = [];
+  private callStacks: Function[] = [];
 
   constructor(private options: ServerOptions) {
     super();
     this.options = options;
     this.server;
     this.start();
+    merge(this, methods);
   }
 
   applyMiddleware(fn: any[]) {
     return this;
   }
 
-  get(path: string, handler: (req: any, res: any) => any) {
-    this.handleRoute("/");
-    return this;
-  }
-  post() {
-    this.handleRoute("/");
-    return this;
-  }
-  put() {
-    this.handleRoute("/");
-    return this;
-  }
-  delete() {
-    this.handleRoute("/");
-    return this;
-  }
-  patch() {
-    this.handleRoute("/");
-    return this;
-  }
-  head() {
-    this.handleRoute("/");
-    return this;
-  }
   all() {
     this.handleRoute("/");
     return this;
@@ -85,5 +63,19 @@ class Server extends EventEmitter {
     });
   }
 }
+
+const methods: any = {};
+
+(function invokeHttpMethods() {
+  http.METHODS.forEach((method) => {
+    methods[method.toLowerCase()] = function (req: any, res: any, next: any) {
+      router();
+    };
+  });
+})();
+
+function router() {}
+
+console.log(new Server({}));
 
 export default Server;

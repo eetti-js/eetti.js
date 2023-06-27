@@ -18,6 +18,10 @@ server.applyMiddleware([
   () => {},
 ]);
 
+server.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 // if routes wants to be separate files
 server.route("api/v1/user").use(() => {});
 server.route("api/v1/products").use(() => {});
