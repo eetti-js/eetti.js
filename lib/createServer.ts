@@ -25,7 +25,6 @@ interface ServerOptions {
     migrations?: boolean;
   };
 }
-
 class Server extends EventEmitter {
   private server: any;
   private callStacks: Function[] = [];
